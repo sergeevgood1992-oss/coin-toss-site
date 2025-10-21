@@ -27,7 +27,15 @@
       e.preventDefault();
       const email = document.getElementById('email').value;
       const nickname = document.getElementById('nickname').value;
-      localStorage.setItem('user', JSON.stringify({ email, nickname }));
+
+      // Сохраняем в localStorage
+      localStorage.setItem('user', JSON.stringify({ email, nickname, age: '' }));
+
+      // ➕ Отправляем GET-запрос (виден в DevTools)
+      fetch(`https://httpbin.org/get?event=register&email=${encodeURIComponent(email)}&nickname=${encodeURIComponent(nickname)}`)
+        .catch(() => {});
+
+      // Переход на монетку
       window.location.href = 'coin.html';
     });
   </script>
