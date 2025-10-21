@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Вход</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; padding: 50px; }
+    input { padding: 8px; margin: 5px; width: 200px; }
+    button { padding: 10px 20px; margin-top: 10px; }
+  </style>
+</head>
+<body>
+  <h1>Добро пожаловать!</h1>
+  <p>Введите ваш email и никнейм:</p>
+  <form id="loginForm">
+    <br>
+    <input type="email" id="email" placeholder="Ваш email" required />
+    <br>
+    <input type="text" id="nickname" placeholder="Ваш никнейм" required />
+    <br>
+    <button type="submit">Войти</button>
+  </form>
+
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const nickname = document.getElementById('nickname').value;
+      localStorage.setItem('user', JSON.stringify({ email, nickname }));
+      window.location.href = 'coin.html';
+    });
+  </script>
+</body>
+</html>

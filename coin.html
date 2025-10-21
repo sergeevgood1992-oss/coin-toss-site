@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Монетка</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; padding: 50px; }
+    button { padding: 12px 24px; font-size: 18px; margin: 20px; }
+    #result { font-size: 24px; margin: 20px; min-height: 30px; }
+    .back { color: #555; text-decoration: underline; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h1 id="greeting">Привет, друг!</h1>
+  <button onclick="tossCoin()">Подбросить монетку</button>
+  <div id="result"></div>
+  <div class="back" onclick="goBack()">← Вернуться на главную</div>
+
+  <script>
+    const user = JSON.parse(localStorage.getItem('user'));
+    const greeting = document.getElementById('greeting');
+
+    if (user) {
+      greeting.textContent = `Привет, ${user.nickname}!`;
+    } else {
+      window.location.href = 'index.html';
+    }
+
+    function tossCoin() {
+      const result = Math.random() < 0.5 ? 'Орёл' : 'Решка';
+      document.getElementById('result').textContent = `Выпало: ${result}`;
+    }
+
+    function goBack() {
+      localStorage.removeItem('user');
+      window.location.href = 'index.html';
+    }
+  </script>
+</body>
+</html>
