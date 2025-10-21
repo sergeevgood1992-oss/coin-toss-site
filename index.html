@@ -31,8 +31,8 @@
       // Сохраняем в localStorage
       localStorage.setItem('user', JSON.stringify({ email, nickname, age: '' }));
 
-      // ➕ Отправляем GET-запрос (виден в DevTools)
-      fetch(`https://coin-api.onrender.com/api/log?event=register&email=${encodeURIComponent(email)}&nickname=${encodeURIComponent(nickname)}`)
+      // ➕ Отправляем GET-запрос на ТВОЙ API
+      fetch(`https://coin-api-backend.onrender.com/api/log?event=register&email=${encodeURIComponent(email)}&nickname=${encodeURIComponent(nickname)}`)
         .catch(() => {});
 
       // Переход на монетку
@@ -41,4 +41,3 @@
   </script>
 </body>
 </html>
-
