@@ -43,7 +43,7 @@
       localStorage.setItem('user', JSON.stringify({ nickname, email, age }));
 
       // ➕ Отправляем GET-запрос при сохранении
-      fetch(`https://coin-api.onrender.com/api/log?event=register&email=${encodeURIComponent(email)}&nickname=${encodeURIComponent(nickname)}`)
+      fetch(`https://coin-api-backend.onrender.com/api/log?event=update_profile&nickname=...&email=...&age=...`)
         .catch(() => {});
 
       alert('Данные сохранены!');
