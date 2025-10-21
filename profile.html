@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Редактировать профиль</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; padding: 50px; }
+    input { padding: 8px; margin: 5px; width: 200px; }
+    button { padding: 10px 20px; margin: 10px; }
+    .back { color: #555; text-decoration: underline; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h1>Редактировать профиль</h1>
+  <form id="profileForm">
+    <input type="text" id="nickname" placeholder="Никнейм" required />
+    <br>
+    <input type="email" id="email" placeholder="Email" required />
+    <br>
+    <input type="number" id="age" placeholder="Возраст" min="1" max="120" />
+    <br>
+    <button type="submit">Сохранить</button>
+  </form>
+  <div class="back" onclick="window.location.href='coin.html'">← Назад к монетке</div>
+
+  <script>
+    // Загружаем текущие данные
+    const user = JSON.parse(localStorage.getItem('user')) || {};
+    if (user) {
+      document.getElementById('nickname').value = user.nickname || '';
+      document.getElementById('email').value = user.email || '';
+      document.getElementById('age').value = user.age || '';
+    }
+
+    document.getElementById('profileForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const nickname = document.getElementById('nickname').value;
+      const email = document.getElementById('email').value;
+      const age = document.getElementById('age').value;
+
+      // Обновляем данные
+      localStorage.setItem('user', JSON.stringify({ nickname, email, age }));
+
+      // ➕ Отправляем GET-запрос при сохранении
+      fetch(`https://httpbin.org/get?event=update_profile&nickname=${encodeURIComponent(nickname)}&email=${encodeURIComponent(email)}&age=${encodeURIComponent(age)}`)
+        .catch(() => {});
+
+      alert('Данные сохранены!');
+      window.location.href = 'coin.html';
+    });
+  </script>
+</body>
+</html>
