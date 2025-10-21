@@ -6,7 +6,7 @@
   <title>Монетка</title>
   <style>
     body { font-family: sans-serif; text-align: center; padding: 50px; }
-    button { padding: 12px 24px; font-size: 18px; margin: 20px; }
+    button { padding: 12px 24px; font-size: 18px; margin: 10px; }
     #result { font-size: 24px; margin: 20px; min-height: 30px; }
     .back { color: #555; text-decoration: underline; cursor: pointer; }
   </style>
@@ -15,7 +15,10 @@
   <h1 id="greeting">Привет, друг!</h1>
   <button onclick="tossCoin()">Подбросить монетку</button>
   <div id="result"></div>
-  <div class="back" onclick="goBack()">← Вернуться на главную</div>
+  <br>
+  <button onclick="window.location.href='profile.html'">Редактировать профиль</button>
+  <br>
+  <div class="back" onclick="goBack()">← Выйти</div>
 
   <script>
     const user = JSON.parse(localStorage.getItem('user'));
@@ -23,6 +26,9 @@
 
     if (user) {
       greeting.textContent = `Привет, ${user.nickname}!`;
+      // ➕ GET-запрос при заходе на страницу монетки
+      fetch(`https://httpbin.org/get?event=coin_page_visit&nickname=${encodeURIComponent(user.nickname)}`)
+        .catch(() => {});
     } else {
       window.location.href = 'index.html';
     }
