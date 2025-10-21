@@ -27,7 +27,7 @@
     if (user) {
       greeting.textContent = `Привет, ${user.nickname}!`;
       // ➕ GET-запрос при заходе на страницу монетки
-      fetch(`https://coin-api.onrender.com/api/log?event=register&email=${encodeURIComponent(email)}&nickname=${encodeURIComponent(nickname)}`)
+      fetch(`https://coin-api-backend.onrender.com/api/log?event=coin_page_visit&nickname=...`)
         .catch(() => {});
     } else {
       window.location.href = 'index.html';
@@ -45,4 +45,5 @@
   </script>
 </body>
 </html>
+
 
